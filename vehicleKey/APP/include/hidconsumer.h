@@ -47,6 +47,7 @@ extern "C" {
  */
 extern void HidEmu_Init(void);
 extern void initKeyUser(void);
+extern void flashResetMasterMac(void);
 /*
  * Task Event Processor for the BLE Application
  */

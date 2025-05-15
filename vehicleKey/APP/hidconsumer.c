@@ -428,7 +428,7 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
             {
                 flashWriteMac(event->devAddr);
             }
-            if(CompMacAddr(event->devAddr) == FALSE)
+            // if(CompMacAddr(event->devAddr) == FALSE)
             {
                 // get connection handle
                 hidEmuConnHandle = event->connectionHandle;
@@ -543,7 +543,13 @@ static void flashWriteMac(uint8_t *macAddr)
     PRINT("EEPROM_WRITE=%02x\n", s);
     
 }
-
+void flashResetMasterMac()
+{
+    uint8_t  s;
+    s = EEPROM_ERASE(MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
+    masterMacAddrInfo.hasInit = 0x00;
+    PRINT("EEPROM_ERASE=%02x\n", s);
+}
 static void flashReadMac(stuMasterMacAddrInfo *macAddrinfo)
 {
     uint8_t  s;
