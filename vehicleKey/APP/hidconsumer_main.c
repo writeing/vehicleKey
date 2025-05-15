@@ -37,6 +37,7 @@ __attribute__((section(".highcode")))
 __attribute__((noinline))
 void Main_Circulation()
 {
+    initKeyUser();
     while(1)
     {
         TMOS_SystemProcess();

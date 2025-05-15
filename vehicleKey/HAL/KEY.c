@@ -40,10 +40,12 @@ void HAL_KeyInit(void)
     halKeySavedKeys = 0;
     /* Initialize callback function */
     pHalKeyProcessFunction = NULL;
-    KEY1_DIR;
-    KEY1_PU;
-    KEY2_DIR;
-    KEY2_PU;
+    // KEY1_DIR;
+    // KEY1_PU;
+    // KEY2_DIR;
+    // KEY2_PU;
+    KEY3_DIR;
+    KEY3_PU;
 }
 
 /**************************************************************************************************

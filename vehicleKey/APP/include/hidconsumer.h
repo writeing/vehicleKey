@@ -46,7 +46,7 @@ extern "C" {
  * Task Initialization for the BLE Application
  */
 extern void HidEmu_Init(void);
-
+extern void initKeyUser(void);
 /*
  * Task Event Processor for the BLE Application
  */

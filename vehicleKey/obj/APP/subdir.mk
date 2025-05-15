@@ -6,15 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../APP/hidconsumer.c \
-../APP/hidconsumer_main.c 
+../APP/hidconsumer_main.c \
+../APP/keyUser.c 
 
 C_DEPS += \
 ./APP/hidconsumer.d \
-./APP/hidconsumer_main.d 
+./APP/hidconsumer_main.d \
+./APP/keyUser.d 
 
 OBJS += \
 ./APP/hidconsumer.o \
-./APP/hidconsumer_main.o 
+./APP/hidconsumer_main.o \
+./APP/keyUser.o 
 
 
 

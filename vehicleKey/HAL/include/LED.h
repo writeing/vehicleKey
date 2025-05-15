@@ -49,28 +49,30 @@ extern "C" {
 /* 连接一个LED用于监控演示程序的进度,低电平LED亮 */
 
 /* 1 - LED */
-#define LED1_BV                 BV(15)
-#define LED2_BV
-#define LED3_BV
+#define LED1_BV                 BV(12)
+#define LED2_BV                 BV(13)
+#define LED3_BV                 BV(23)
+#define LED4_BV                 BV(4)
 
-#define LED1_OUT                (R32_PB_OUT)
-#define LED2_OUT                0
-#define LED3_OUT                0
-#define LED4_OUT                0
+#define LED1_OUT                (R32_PA_OUT)
+#define LED2_OUT                (R32_PA_OUT)
+#define LED3_OUT                (R32_PB_OUT)
+#define LED4_OUT                (R32_PB_OUT)
 
-#define LED1_DDR                (R32_PB_DIR |= LED1_BV)
-#define LED2_DDR                0
-#define LED3_DDR                0
+#define LED1_DDR                (R32_PA_DIR |= LED1_BV)
+#define LED2_DDR                (R32_PA_DIR |= LED2_BV)
+#define LED3_DDR                (R32_PB_DIR |= LED3_BV)
+#define LED4_DDR                (R32_PB_DIR |= LED4_BV)
 
 #define HAL_TURN_OFF_LED1()     (LED1_OUT |= LED1_BV)
-#define HAL_TURN_OFF_LED2()
-#define HAL_TURN_OFF_LED3()
-#define HAL_TURN_OFF_LED4()
+#define HAL_TURN_OFF_LED2()     (LED2_OUT |= LED2_BV)
+#define HAL_TURN_OFF_LED3()     (LED3_OUT |= LED3_BV)
+#define HAL_TURN_OFF_LED4()     (LED4_OUT |= LED4_BV)
 
 #define HAL_TURN_ON_LED1()      (LED1_OUT &= (~LED1_BV))
-#define HAL_TURN_ON_LED2()
-#define HAL_TURN_ON_LED3()
-#define HAL_TURN_ON_LED4()
+#define HAL_TURN_ON_LED2()      (LED2_OUT &= (~LED2_BV))
+#define HAL_TURN_ON_LED3()      (LED3_OUT &= (~LED3_BV))
+#define HAL_TURN_ON_LED4()      (LED4_OUT &= (~LED4_BV))
 
 #define HAL_STATE_LED1()        0
 #define HAL_STATE_LED2()        0

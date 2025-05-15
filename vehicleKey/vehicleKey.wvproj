@@ -49,8 +49,7 @@
 					"${project}/StdPeriphDriver/CH57x_usbdev.c",
 					"${project}/StdPeriphDriver/CH57x_uart3.c",
 					"${project}/StdPeriphDriver/CH57x_uart2.c",
-					"${project}/StdPeriphDriver/CH57x_spi0.c",
-					"${project}/StdPeriphDriver/CH57x_pwm.c"
+					"${project}/StdPeriphDriver/CH57x_spi0.c"
 				],
 				"riscvTargetProcessor": {
 					"architecture": "rv32i",

@@ -20,6 +20,7 @@
 #include "hiddev.h"
 #include "hidconsumer.h"
 #include "hidconsumerservice.h"
+#include "CH57x_common.h"
 
 /*********************************************************************
  * MACROS
@@ -55,7 +56,7 @@
 #define DEFAULT_PASSCODE                     0
 
 // Default GAP pairing mode
-#define DEFAULT_PAIRING_MODE                 GAPBOND_PAIRING_MODE_WAIT_FOR_REQ
+#define DEFAULT_PAIRING_MODE                 GAPBOND_PAIRING_MODE_NO_PAIRING
 
 // Default MITM mode (TRUE to require passcode or OOB when pairing)
 #define DEFAULT_MITM_MODE                    FALSE
@@ -152,10 +153,14 @@ static hidDevCfg_t hidEmuCfg = {
     DEFAULT_HID_IDLE_TIMEOUT, // Idle timeout
     HID_FEATURE_FLAGS         // HID feature flags
 };
-
+typedef struct 
+{
+    uint8_t masterDevAddr[B_ADDR_LEN];
+    uint8_t hasInit;
+}stuMasterMacAddrInfo;
 static uint16_t hidEmuConnHandle = GAP_CONNHANDLE_INIT;
-static uint8_t masterDevAddr[B_ADDR_LEN];
-
+static stuMasterMacAddrInfo masterMacAddrInfo = {0};
+#define MASTER_MAC_ADDR_EEROM_ADDR   0
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
@@ -166,7 +171,10 @@ static uint8_t hidEmuRptCB(uint8_t id, uint8_t type, uint16_t uuid,
                            uint8_t oper, uint16_t *pLen, uint8_t *pData);
 static void    hidEmuEvtCB(uint8_t evt);
 static void    hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent);
-
+static void    flashWriteMac(uint8_t *macAddr);
+static void    flashReadMac(stuMasterMacAddrInfo *macAddrinfo);
+static BOOL    checkMasterMacAddr(stuMasterMacAddrInfo *macAddrinfo);
+static BOOL    CompMacAddr(uint8_t *macAddr);
 /*********************************************************************
  * PROFILE CALLBACKS
  */
@@ -374,6 +382,12 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
             uint8_t ownAddr[6];
             GAPRole_GetParameter(GAPROLE_BD_ADDR, ownAddr);
             GAP_ConfigDeviceAddr(ADDRTYPE_STATIC, ownAddr);
+            flashReadMac(&masterMacAddrInfo);
+            if(checkMasterMacAddr(&masterMacAddrInfo) == FALSE)
+            {
+                uint8_t  pairMode = GAPBOND_PAIRING_MODE_WAIT_FOR_REQ;
+                GAPBondMgr_SetParameter(GAPBOND_PERI_PAIRING_MODE, sizeof(uint8_t), &pairMode);
+            }
             PRINT("Initialized..\n");
         }
         break;
@@ -384,17 +398,44 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
 
         case GAPROLE_CONNECTED:
         {
+            // gapDeviceInfoEvent_t *ddevent = (gapDeviceInfoEvent_t *)pEvent;
+
             gapEstLinkReqEvent_t *event = (gapEstLinkReqEvent_t *)pEvent;
-            PRINT ( "directAddressType=%x devAddr",event->devAddrType );  //获取地址类型
-            for(int i=0; i<6; i++)
+
+            // PRINT ( "directAddressType=%x devAddr",event->devAddrType );  //获取地址类型
+            // for(int i=0; i<6; i++)
+            // {
+            //     PRINT ( " %x ",pEvent->linkCmpl.devAddr[i]);//打印地址
+            // }
+            // PRINT ( "\n addr ");
+            // for(int i=0; i<6; i++)
+            // {
+            //     PRINT ( " %x ",pEvent->deviceInfo.addr[i]);//打印地址
+            // }
+            // PRINT ( "\n addr ");
+            // for(int i=0; i<6; i++)
+            // {
+            //     PRINT ( " %x ",pEvent->initDone.devAddr[i]);//打印地址
+            // }
+            // uint8_t Buffer[6];
+            // GET_UNIQUE_ID(Buffer);
+            //             PRINT ( "\n addr ");
+            // for(int i=0; i<6; i++)
+            // {
+            //     PRINT ( " %x ",Buffer[i]);//打印地址
+            // }
+            if(checkMasterMacAddr(&masterMacAddrInfo) == FALSE)
             {
-                PRINT ( " %x ",event->devAddr[i]);//打印地址
+                flashWriteMac(event->devAddr);
             }
-            tmos_memcpy(masterDevAddr,event->devAddr,B_ADDR_LEN);
-            // get connection handle
-            hidEmuConnHandle = event->connectionHandle;
-            tmos_start_task(hidEmuTaskId, START_PARAM_UPDATE_EVT, START_PARAM_UPDATE_EVT_DELAY);
-            PRINT("\n Connected..\n");
+            if(CompMacAddr(event->devAddr) == FALSE)
+            {
+                // get connection handle
+                hidEmuConnHandle = event->connectionHandle;
+                tmos_start_task(hidEmuTaskId, START_PARAM_UPDATE_EVT, START_PARAM_UPDATE_EVT_DELAY);
+                PRINT("\n Connected..\n");
+            }
+  
         }
         break;
 
@@ -486,3 +527,56 @@ static void hidEmuEvtCB(uint8_t evt)
 
 /*********************************************************************
 *********************************************************************/
+static void flashWriteMac(uint8_t *macAddr)
+{
+    uint8_t  s;
+    if(macAddr == CAP_NULL)
+    {
+        PRINT("macAddr is null\n");
+        return;
+    }
+    masterMacAddrInfo.hasInit = 0xaa;
+    s = EEPROM_ERASE(MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
+    PRINT("EEPROM_ERASE=%02x\n", s);
+    tmos_memcpy(masterMacAddrInfo.masterDevAddr,macAddr,B_ADDR_LEN);
+    s = EEPROM_WRITE(MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof(stuMasterMacAddrInfo));
+    PRINT("EEPROM_WRITE=%02x\n", s);
+    
+}
+
+static void flashReadMac(stuMasterMacAddrInfo *macAddrinfo)
+{
+    uint8_t  s;
+    if(macAddrinfo == CAP_NULL)
+    {
+        PRINT("macAddrinfo is null\n");
+        return;
+    }
+    PRINT("read master mac:");
+    EEPROM_READ(MASTER_MAC_ADDR_EEROM_ADDR, (void*)macAddrinfo, sizeof(stuMasterMacAddrInfo));
+    for(int i = 0; i < B_ADDR_LEN ; i ++)
+    {
+        PRINT("%x ",macAddrinfo->masterDevAddr[i]);
+    }
+    PRINT(" init flag:%x\n",macAddrinfo->hasInit);
+}
+static BOOL checkMasterMacAddr(stuMasterMacAddrInfo *macAddrinfo)
+{
+    if(macAddrinfo->hasInit == 0xaa)
+       {
+        PRINT(" init true\n");
+        return TRUE;
+       }
+       PRINT(" init false\n");
+    return FALSE;
+        
+}
+static BOOL CompMacAddr(uint8_t *macAddr)
+{
+    if(macAddr == CAP_NULL)
+    {
+        PRINT("macAddr is null\n");
+        return FALSE;
+    }
+    return tmos_memcmp(macAddr,masterMacAddrInfo.masterDevAddr,B_ADDR_LEN);
+}

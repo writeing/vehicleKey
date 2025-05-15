@@ -9,6 +9,7 @@ C_SRCS += \
 ../StdPeriphDriver/CH57x_clk.c \
 ../StdPeriphDriver/CH57x_flash.c \
 ../StdPeriphDriver/CH57x_gpio.c \
+../StdPeriphDriver/CH57x_pwm.c \
 ../StdPeriphDriver/CH57x_pwr.c \
 ../StdPeriphDriver/CH57x_sys.c \
 ../StdPeriphDriver/CH57x_uart0.c \
@@ -19,6 +20,7 @@ C_DEPS += \
 ./StdPeriphDriver/CH57x_clk.d \
 ./StdPeriphDriver/CH57x_flash.d \
 ./StdPeriphDriver/CH57x_gpio.d \
+./StdPeriphDriver/CH57x_pwm.d \
 ./StdPeriphDriver/CH57x_pwr.d \
 ./StdPeriphDriver/CH57x_sys.d \
 ./StdPeriphDriver/CH57x_uart0.d \
@@ -29,6 +31,7 @@ OBJS += \
 ./StdPeriphDriver/CH57x_clk.o \
 ./StdPeriphDriver/CH57x_flash.o \
 ./StdPeriphDriver/CH57x_gpio.o \
+./StdPeriphDriver/CH57x_pwm.o \
 ./StdPeriphDriver/CH57x_pwr.o \
 ./StdPeriphDriver/CH57x_sys.o \
 ./StdPeriphDriver/CH57x_uart0.o \
