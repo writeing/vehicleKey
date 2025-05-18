@@ -1,6 +1,5 @@
-HAL/SLEEP.o: ../HAL/SLEEP.c \
- E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/HAL.h \
- E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/config.h \
+HAL/CKEY.o: ../HAL/CKEY.c \
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CONFIG.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\LIB/CH57xBLE_LIB.H \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH57x_common.h \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH573SFR.h \
@@ -18,15 +17,16 @@ HAL/SLEEP.o: ../HAL/SLEEP.c \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH57x_usbdev.h \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH57x_usbhost.h \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/ISP573.h \
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/HAL.h \
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/config.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/RTC.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h \
- E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h \
+ e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h
 
-E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/HAL.h:
-
-E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/config.h:
+E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CONFIG.h:
 
 E:\01.workspace\02.mcu\05.nokey_ch573\LIB/CH57xBLE_LIB.H:
 
@@ -62,6 +62,10 @@ e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH57x_usbho
 
 e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/ISP573.h:
 
+E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/HAL.h:
+
+E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/config.h:
+
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/RTC.h:
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h:
@@ -71,3 +75,5 @@ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h:
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h:
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h:
+
+e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h:

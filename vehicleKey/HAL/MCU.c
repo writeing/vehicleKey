@@ -207,6 +207,14 @@ tmosEvents HAL_ProcessEvent(tmosTaskID task_id, tmosEvents events)
         tmos_start_task(halTaskID, HAL_TEST_EVENT, MS1_TO_SYSTEM_TIME(1000));
         return events ^ HAL_TEST_EVENT;
     }
+    if(events & HAL_CKEY_UPDATE_EVT)
+    {
+#if(defined HAL_CKEY) && (HAL_CKEY == TRUE)        
+        HAL_CKeyPoll();
+        tmos_start_task(halTaskID, HAL_CKEY_UPDATE_EVT, MS1_TO_SYSTEM_TIME(1000));    
+        return (events ^ HAL_CKEY_UPDATE_EVT);
+#endif         
+    }
     return 0;
 }
 
@@ -232,6 +240,9 @@ void HAL_Init()
 #if(defined HAL_KEY) && (HAL_KEY == TRUE)
     HAL_KeyInit();
 #endif
+#if(defined HAL_CKEY) && (HAL_CKEY == TRUE)
+    HAL_CKeyInit();
+#endif    
 #if(defined BLE_CALIBRATION_ENABLE) && (BLE_CALIBRATION_ENABLE == TRUE)
     tmos_start_task(halTaskID, HAL_REG_INIT_EVENT, MS1_TO_SYSTEM_TIME(BLE_CALIBRATION_PERIOD)); // 添加校准任务，单次校准耗时小于10ms
 #endif

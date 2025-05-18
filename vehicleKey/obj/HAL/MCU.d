@@ -21,7 +21,8 @@ HAL/MCU.o: ../HAL/MCU.c \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/RTC.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h \
- E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h \
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/HAL.h:
 
@@ -68,3 +69,5 @@ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h:
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h:
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h:
+
+E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h:

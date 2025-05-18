@@ -36,7 +36,8 @@
 #define START_PARAM_UPDATE_EVT_DELAY         12800
 // rssi update delay
 #define START_RSSI_UPDATE_EVT_DELAY         1000
-
+// rssi update delay
+#define START_CKEY_UPDATE_EVT_DELAY         1000
 // HID idle timeout in msec; set to zero to disable timeout
 #define DEFAULT_HID_IDLE_TIMEOUT             60000
 
@@ -322,6 +323,7 @@ uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events)
         tmos_start_task(hidEmuTaskId, START_RSSI_UPDATE_EVT, START_RSSI_UPDATE_EVT_DELAY);
         return (events ^ START_RSSI_UPDATE_EVT);
     }
+
     return 0;
 }
 
@@ -552,7 +554,6 @@ void flashResetMasterMac()
 }
 static void flashReadMac(stuMasterMacAddrInfo *macAddrinfo)
 {
-    uint8_t  s;
     if(macAddrinfo == CAP_NULL)
     {
         PRINT("macAddrinfo is null\n");

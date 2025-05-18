@@ -23,6 +23,7 @@ APP/hidconsumer_main.o: ../APP/hidconsumer_main.c \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h \
+ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/Profile/include/hiddev.h \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h
 
@@ -73,6 +74,8 @@ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/SLEEP.h:
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h:
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h:
+
+E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h:
 
 e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/Profile/include/hiddev.h:
 

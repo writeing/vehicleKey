@@ -30,6 +30,9 @@ extern "C" {
 #define START_REPORT_EVT          0x0002
 #define START_PARAM_UPDATE_EVT    0x0004
 #define START_RSSI_UPDATE_EVT     0x0008
+
+#define CONFIG_VEHICLE_POWER_LEVEL    1.8
+
 /*********************************************************************
  * MACROS
  */
@@ -48,6 +51,7 @@ extern "C" {
 extern void HidEmu_Init(void);
 extern void initKeyUser(void);
 extern void flashResetMasterMac(void);
+
 /*
  * Task Event Processor for the BLE Application
  */

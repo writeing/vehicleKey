@@ -95,6 +95,9 @@
 #ifndef HAL_KEY
 #define HAL_KEY                             TRUE
 #endif
+#ifndef HAL_CKEY
+#define HAL_CKEY                            TRUE
+#endif
 #ifndef HAL_LED
 #define HAL_LED                             TRUE
 #endif
