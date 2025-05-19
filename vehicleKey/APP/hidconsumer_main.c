@@ -38,6 +38,7 @@ __attribute__((noinline))
 void Main_Circulation()
 {
     initKeyUser();
+    initVehicleControl();
     Hal_CKeyConfig(CONFIG_VEHICLE_POWER_LEVEL);
     while(1)
     {

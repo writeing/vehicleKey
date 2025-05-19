@@ -30,5 +30,21 @@
         <arguments>1.0-name-matches-false-false-*.wvproj</arguments>
       </matcher>
     </filter>
+    <filter>
+      <name>thrLib/FlexibleButton-latest/examples</name>
+      <type>6</type>
+      <matcher>
+        <id>org.eclipse.ui.ide.multiFilter</id>
+        <arguments>1.0-name-matches-false-false-demo_rtt_iotboard.c</arguments>
+      </matcher>
+    </filter>
+    <filter>
+      <name>thrLib/FlexibleButton-latest/examples</name>
+      <type>6</type>
+      <matcher>
+        <id>org.eclipse.ui.ide.multiFilter</id>
+        <arguments>1.0-name-matches-false-false-demo_tos_evb_mx_plus.c</arguments>
+      </matcher>
+    </filter>
   </filteredResources>
 </projectDescription>

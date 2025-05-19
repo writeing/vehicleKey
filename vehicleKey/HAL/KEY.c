@@ -18,7 +18,7 @@
  *                                        GLOBAL VARIABLES
  **************************************************************************************************/
 
-static uint8_t halKeySavedKeys; /* 保留按键最后的状态，用于查询是否有键值变化 */
+// static uint8_t halKeySavedKeys; /* 保留按键最后的状态，用于查询是否有键值变化 */
 
 /**************************************************************************************************
  *                                        FUNCTIONS - Local
@@ -37,7 +37,7 @@ static halKeyCBack_t pHalKeyProcessFunction; /* callback function */
 void HAL_KeyInit(void)
 {
     /* Initialize previous key to 0 */
-    halKeySavedKeys = 0;
+    // halKeySavedKeys = 0;
     /* Initialize callback function */
     pHalKeyProcessFunction = NULL;
     // KEY1_DIR;
@@ -108,29 +108,29 @@ uint8_t HalKeyRead(void)
 void HAL_KeyPoll(void)
 {
     uint8_t keys = 0;
-    if(HAL_PUSH_BUTTON1())
-    {
-        keys |= HAL_KEY_SW_1;
-    }
-    if(HAL_PUSH_BUTTON2())
-    {
-        keys |= HAL_KEY_SW_2;
-    }
-    if(HAL_PUSH_BUTTON3())
-    {
-        keys |= HAL_KEY_SW_3;
-    }
-    if(HAL_PUSH_BUTTON4())
-    {
-        keys |= HAL_KEY_SW_4;
-    }
-    if(keys == halKeySavedKeys)
-    { /* Exit - since no keys have changed */
-        return;
-    }
-    halKeySavedKeys = keys; /* Store the current keys for comparation next time */
+    // if(HAL_PUSH_BUTTON1())
+    // {
+    //     keys |= HAL_KEY_SW_1;
+    // }
+    // if(HAL_PUSH_BUTTON2())
+    // {
+    //     keys |= HAL_KEY_SW_2;
+    // }
+    // if(HAL_PUSH_BUTTON3())
+    // {
+    //     keys |= HAL_KEY_SW_3;
+    // }
+    // if(HAL_PUSH_BUTTON4())
+    // {
+    //     keys |= HAL_KEY_SW_4;
+    // }
+    // if(keys == halKeySavedKeys)
+    // { /* Exit - since no keys have changed */
+    //     return;
+    // }
+    // halKeySavedKeys = keys; /* Store the current keys for comparation next time */
     /* Invoke Callback if new keys were depressed */
-    if(keys && (pHalKeyProcessFunction))
+    if(pHalKeyProcessFunction)
     {
         (pHalKeyProcessFunction)(keys);
     }

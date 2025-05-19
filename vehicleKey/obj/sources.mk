@@ -29,3 +29,4 @@ Profile \
 RVMSIS \
 Startup \
 StdPeriphDriver \
+thrLib/FlexibleButton-latest \

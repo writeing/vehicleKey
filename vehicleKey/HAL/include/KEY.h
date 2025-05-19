@@ -47,9 +47,9 @@ extern "C" {
 #define KEY3_DIR                 (R32_PB_DIR &= ~KEY3_BV)
 #define KEY4_DIR                 ()
 
-#define KEY1_IN                  (ACTIVE_LOW(R32_PB_PIN & KEY1_BV))
-#define KEY2_IN                  (ACTIVE_LOW(R32_PB_PIN & KEY2_BV))
-#define KEY3_IN                  (ACTIVE_LOW(R32_PB_PIN & KEY3_BV))
+#define KEY1_IN                  (ACTIVE_HIGH(R32_PB_PIN & KEY1_BV))
+#define KEY2_IN                  (ACTIVE_HIGH(R32_PB_PIN & KEY2_BV))
+#define KEY3_IN                  (ACTIVE_HIGH(R32_PB_PIN & KEY3_BV))
 #define KEY4_IN                  ()
 
 #define HAL_PUSH_BUTTON1()       (KEY1_IN) //添加自定义按键

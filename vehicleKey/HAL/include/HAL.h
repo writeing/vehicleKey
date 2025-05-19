@@ -30,6 +30,7 @@ extern "C" {
 #define HAL_REG_INIT_EVENT    0x2000
 #define HAL_TEST_EVENT        0x4000
 #define HAL_CKEY_UPDATE_EVT   0x0004
+
 /*********************************************************************
  * GLOBAL VARIABLES
  */

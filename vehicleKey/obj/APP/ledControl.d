@@ -1,4 +1,4 @@
-APP/keyUser.o: ../APP/keyUser.c \
+APP/ledControl.o: ../APP/ledControl.c \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CONFIG.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\LIB/CH57xBLE_LIB.H \
  e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/StdPeriphDriver/inc/CH57x_common.h \
@@ -24,8 +24,7 @@ APP/keyUser.o: ../APP/keyUser.c \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/LED.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h \
  E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h \
- e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h \
- e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/thrLib/FlexibleButton-latest/flexible_button.h
+ e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h
 
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CONFIG.h:
 
@@ -78,5 +77,3 @@ E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/KEY.h:
 E:\01.workspace\02.mcu\05.nokey_ch573\vehicleKey\HAL\include/CKEY.h:
 
 e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/APP/include/hidconsumer.h:
-
-e:/01.workspace/02.mcu/05.nokey_ch573/vehicleKey/thrLib/FlexibleButton-latest/flexible_button.h:

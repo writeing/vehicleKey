@@ -64,10 +64,10 @@ void HAL_LedInit(void)
     LED4_DDR;
     HalLedSet(HAL_LED_ALL, HAL_LED_MODE_OFF);
     // just test
-    HalLedBlink(HAL_LED_1, 10, 30, 4000);
-    HalLedBlink(HAL_LED_2, 10, 30, 4000);
-    HalLedSet(HAL_LED_3,HAL_LED_MODE_FLASH);
-    HalLedSet(HAL_LED_4,HAL_LED_MODE_ON);
+    // HalLedBlink(HAL_LED_1, 10, 30, 4000);
+    // HalLedBlink(HAL_LED_2, 10, 30, 4000);
+    // HalLedSet(HAL_LED_3,HAL_LED_MODE_FLASH);
+    // HalLedSet(HAL_LED_4,HAL_LED_MODE_ON);
     /* Initialize sleepActive to FALSE */
     HalLedStatusControl.sleepActive = FALSE;
 }

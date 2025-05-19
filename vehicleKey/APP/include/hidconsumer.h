@@ -30,7 +30,7 @@ extern "C" {
 #define START_REPORT_EVT          0x0002
 #define START_PARAM_UPDATE_EVT    0x0004
 #define START_RSSI_UPDATE_EVT     0x0008
-
+#define VEHICLE_UPDATE_EVT        0x0010
 #define CONFIG_VEHICLE_POWER_LEVEL    1.8
 
 /*********************************************************************
@@ -51,12 +51,27 @@ extern "C" {
 extern void HidEmu_Init(void);
 extern void initKeyUser(void);
 extern void flashResetMasterMac(void);
-
+extern void loopVehicleControl(void);
+extern void bleDistanceModeControl(void);
+extern void setThreeLed (int color);
+extern void setVehicleLedStatusWork(int status);
+extern void initVehicleControl();
+extern void setBleConenctStatus(int status);
 /*
  * Task Event Processor for the BLE Application
  */
 extern uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events);
 
+enum
+{
+    STATUS_CONNECTED = 0x01,
+    STATUS_IDLE = 0x02,
+    STATUS_UNLOCK = 0x04,
+
+    STATUS_PAIR = 0x10,
+    STATUS_LOW_POWER = 0x20,
+    STATUS_ERROR = 0x40,
+};
 /*********************************************************************
 *********************************************************************/
 

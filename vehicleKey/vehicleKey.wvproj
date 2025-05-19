@@ -18,6 +18,16 @@
 				"parentLogicPath": "",
 				"type": "file",
 				"name": "*.wvproj"
+			},
+			{
+				"parentLogicPath": "thrLib/FlexibleButton-latest/examples",
+				"type": "file",
+				"name": "demo_rtt_iotboard.c"
+			},
+			{
+				"name": "demo_tos_evb_mx_plus.c",
+				"parentLogicPath": "thrLib/FlexibleButton-latest/examples",
+				"type": "file"
 			}
 		],
 		"projectName": "vehicleKey",
@@ -154,7 +164,9 @@
 							"E:\\01.workspace\\02.mcu\\05.nokey_ch573\\vehicleKey\\HAL\\include",
 							"E:\\01.workspace\\02.mcu\\05.nokey_ch573\\LIB",
 							"${project}/Profile/include",
-							"${project}/APP/include"
+							"${project}/APP/include",
+							"${project}/thrLib",
+							"${project}/thrLib/FlexibleButton-latest"
 						],
 						"include_system_paths": [],
 						"include_files": []

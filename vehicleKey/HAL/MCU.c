@@ -186,7 +186,7 @@ tmosEvents HAL_ProcessEvent(tmosTaskID task_id, tmosEvents events)
     {
 #if(defined HAL_KEY) && (HAL_KEY == TRUE)
         HAL_KeyPoll(); /* Check for keys */
-        tmos_start_task(halTaskID, HAL_KEY_EVENT, MS1_TO_SYSTEM_TIME(100));
+        tmos_start_task(halTaskID, HAL_KEY_EVENT, MS1_TO_SYSTEM_TIME(20));
         return events ^ HAL_KEY_EVENT;
 #endif
     }
@@ -215,6 +215,7 @@ tmosEvents HAL_ProcessEvent(tmosTaskID task_id, tmosEvents events)
         return (events ^ HAL_CKEY_UPDATE_EVT);
 #endif         
     }
+
     return 0;
 }
 

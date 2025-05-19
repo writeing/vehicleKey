@@ -64,13 +64,13 @@ extern "C" {
 #define LED3_DDR                (R32_PB_DIR |= LED3_BV)
 #define LED4_DDR                (R32_PB_DIR |= LED4_BV)
 
-#define HAL_TURN_OFF_LED1()     (LED1_OUT |= LED1_BV)
-#define HAL_TURN_OFF_LED2()     (LED2_OUT |= LED2_BV)
+#define HAL_TURN_OFF_LED1()     (LED1_OUT &= LED1_BV)
+#define HAL_TURN_OFF_LED2()     (LED2_OUT &= LED2_BV)
 #define HAL_TURN_OFF_LED3()     (LED3_OUT |= LED3_BV)
 #define HAL_TURN_OFF_LED4()     (LED4_OUT |= LED4_BV)
 
-#define HAL_TURN_ON_LED1()      (LED1_OUT &= (~LED1_BV))
-#define HAL_TURN_ON_LED2()      (LED2_OUT &= (~LED2_BV))
+#define HAL_TURN_ON_LED1()      (LED1_OUT |= (~LED1_BV))
+#define HAL_TURN_ON_LED2()      (LED2_OUT |= (~LED2_BV))
 #define HAL_TURN_ON_LED3()      (LED3_OUT &= (~LED3_BV))
 #define HAL_TURN_ON_LED4()      (LED4_OUT &= (~LED4_BV))
 

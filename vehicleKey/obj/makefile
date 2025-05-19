@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include thrLib/FlexibleButton-latest/subdir.mk
 -include StdPeriphDriver/subdir.mk
 -include Startup/subdir.mk
 -include RVMSIS/subdir.mk

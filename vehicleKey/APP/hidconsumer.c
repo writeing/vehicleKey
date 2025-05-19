@@ -251,6 +251,7 @@ void HidEmu_Init()
 
     // Setup a delayed profile startup
     tmos_set_event(hidEmuTaskId,START_RSSI_UPDATE_EVT);
+    tmos_set_event(hidEmuTaskId, VEHICLE_UPDATE_EVT);    
 }
 
 /*********************************************************************
@@ -268,7 +269,6 @@ void HidEmu_Init()
  */
 uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events)
 {
-    PRINT("events:%d\n",events);
     if(events & SYS_EVENT_MSG)
     {
         uint8_t *pMsg;
@@ -323,7 +323,13 @@ uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events)
         tmos_start_task(hidEmuTaskId, START_RSSI_UPDATE_EVT, START_RSSI_UPDATE_EVT_DELAY);
         return (events ^ START_RSSI_UPDATE_EVT);
     }
-
+    
+    if(events & VEHICLE_UPDATE_EVT)
+    {
+        loopVehicleControl();
+        tmos_start_task(hidEmuTaskId, VEHICLE_UPDATE_EVT, MS1_TO_SYSTEM_TIME(100));    
+        return (events ^ VEHICLE_UPDATE_EVT);
+    }
     return 0;
 }
 
@@ -396,6 +402,7 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
 
         case GAPROLE_ADVERTISING:
             PRINT("Advertising..\n");
+            setBleConenctStatus(0);
             break;
 
         case GAPROLE_CONNECTED:
@@ -436,6 +443,7 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
                 hidEmuConnHandle = event->connectionHandle;
                 tmos_start_task(hidEmuTaskId, START_PARAM_UPDATE_EVT, START_PARAM_UPDATE_EVT_DELAY);
                 PRINT("\n Connected..\n");
+                setBleConenctStatus(1);
             }
   
         }
@@ -453,6 +461,7 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
             else if(pEvent->gap.opcode == GAP_LINK_TERMINATED_EVENT)
             {
                 PRINT("Disconnected.. Reason:%x\n", pEvent->linkTerminate.reason);
+                setBleConenctStatus(2);
             }
             else if(pEvent->gap.opcode == GAP_LINK_ESTABLISHED_EVENT)
             {
