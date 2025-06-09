@@ -11,7 +11,7 @@
  *******************************************************************************/
 
 /******************************************************************************/
-/* Í·ÎÄ¼þ°üº¬ */
+/* Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ */
 #include "HAL.h"
 
 /* LED control structure */
@@ -62,7 +62,7 @@ void HAL_LedInit(void)
     LED2_DDR;
     LED3_DDR;
     LED4_DDR;
-    HalLedSet(HAL_LED_ALL, HAL_LED_MODE_OFF);
+    // HalLedSet(HAL_LED_ALL, HAL_LED_MODE_OFF);
     // just test
     // HalLedBlink(HAL_LED_1, 10, 30, 4000);
     // HalLedBlink(HAL_LED_2, 10, 30, 4000);

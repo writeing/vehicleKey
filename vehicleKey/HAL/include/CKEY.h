@@ -33,7 +33,7 @@ extern "C" {
 #define HAL_CKEY_SW_POWER_EN          7  // key4
 #define HAL_CKEY_SW_POWER_PWM         8  // key4
 
-/* °´¼ü¶¨Òå */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
 /* 1 - CKEY */
 #define CKEY1_BV                 BV(5)
@@ -91,6 +91,10 @@ void HAL_CKeyPoll(void);
  */
 void Hal_CKeyConfig(float level);
 
+void HAL_setVehicleKeyLock(BOOL lock);
+void HAL_keepVehicleKeyStatus(BOOL sw);
+void HAL_setVehicleKeyPowerCtl(BOOL sw);
+void sleepCkey(void);
 /**************************************************************************************************
 **************************************************************************************************/
 

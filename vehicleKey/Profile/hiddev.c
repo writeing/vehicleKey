@@ -122,7 +122,7 @@ static void    hidDevLowAdvertising(void);
 static void    hidDevInitialAdvertising(void);
 static uint8_t hidDevBondCount(void);
 static uint8_t HidDev_sendNoti(uint16_t handle, uint8_t len, uint8_t *pData);
-static void hidRssiCB( uint16_t connHandle, int8_t newRSSI );
+
 // typedef void (*gapRolesRssiRead_t)( uint16_t connHandle, int8_t newRSSI );
 
 /*********************************************************************
@@ -1142,7 +1142,3 @@ static uint8_t hidDevBondCount(void)
 
 /*********************************************************************
 *********************************************************************/
-static void hidRssiCB( uint16_t connHandle, int8_t newRSSI )
-{
-    PRINT("RSSI - %d dB Conn  %x \n", -newRSSI,connHandle);
-}

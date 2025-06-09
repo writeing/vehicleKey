@@ -3,10 +3,10 @@
  * Author             : WCH
  * Version            : V1.0
  * Date               : 2020/08/06
- * Description        : À¶ÑÀÅÄÕÕÆ÷Ó¦ÓÃ³ÌÐò£¬³õÊ¼»¯¹ã²¥Á¬½Ó²ÎÊý£¬È»ºó¹ã²¥£¬Ö±ÖÁÁ¬½ÓÖ÷»úºó£¬¶¨Ê±ÉÏ´«ÒôÁ¿¼üÏÂ¼ü
+ * Description        : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ò£¬³ï¿½Ê¼ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ã²¥ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬¶ï¿½Ê±ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
  *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * Attention: This software (modified or not) and binary are used for 
+ * Attention: This software (modified or not) and binary are used for
  * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
@@ -27,49 +27,49 @@
  */
 
 // HID consumer input report length
-#define HID_CONSUMER_IN_RPT_LEN              2
+#define HID_CONSUMER_IN_RPT_LEN 2
 
 /*********************************************************************
  * CONSTANTS
  */
 // Param update delay
-#define START_PARAM_UPDATE_EVT_DELAY         12800
+#define START_PARAM_UPDATE_EVT_DELAY 12800
 // rssi update delay
-#define START_RSSI_UPDATE_EVT_DELAY         1000
+#define START_RSSI_UPDATE_EVT_DELAY 1000
 // rssi update delay
-#define START_CKEY_UPDATE_EVT_DELAY         1000
+#define START_CKEY_UPDATE_EVT_DELAY 1000
 // HID idle timeout in msec; set to zero to disable timeout
-#define DEFAULT_HID_IDLE_TIMEOUT             60000
+#define DEFAULT_HID_IDLE_TIMEOUT 60000
 
 // Minimum connection interval (units of 1.25ms)
-#define DEFAULT_DESIRED_MIN_CONN_INTERVAL    8
+#define DEFAULT_DESIRED_MIN_CONN_INTERVAL 8
 
 // Maximum connection interval (units of 1.25ms)
-#define DEFAULT_DESIRED_MAX_CONN_INTERVAL    8
+#define DEFAULT_DESIRED_MAX_CONN_INTERVAL 8
 
 // Slave latency to use if parameter update request
-#define DEFAULT_DESIRED_SLAVE_LATENCY        0
+#define DEFAULT_DESIRED_SLAVE_LATENCY 0
 
 // Supervision timeout value (units of 10ms)
-#define DEFAULT_DESIRED_CONN_TIMEOUT         500
+#define DEFAULT_DESIRED_CONN_TIMEOUT 500
 
 // Default passcode
-#define DEFAULT_PASSCODE                     0
+#define DEFAULT_PASSCODE 0
 
 // Default GAP pairing mode
-#define DEFAULT_PAIRING_MODE                 GAPBOND_PAIRING_MODE_NO_PAIRING
+#define DEFAULT_PAIRING_MODE GAPBOND_PAIRING_MODE_NO_PAIRING
 
 // Default MITM mode (TRUE to require passcode or OOB when pairing)
-#define DEFAULT_MITM_MODE                    FALSE
+#define DEFAULT_MITM_MODE FALSE
 
 // Default bonding mode, TRUE to bond
-#define DEFAULT_BONDING_MODE                 TRUE
+#define DEFAULT_BONDING_MODE TRUE
 
 // Default GAP bonding I/O capabilities
-#define DEFAULT_IO_CAPABILITIES              GAPBOND_IO_CAP_NO_INPUT_NO_OUTPUT
+#define DEFAULT_IO_CAPABILITIES GAPBOND_IO_CAP_NO_INPUT_NO_OUTPUT
 
 // Battery level is critical when it is less than this %
-#define DEFAULT_BATT_CRITICAL_LEVEL          6
+#define DEFAULT_BATT_CRITICAL_LEVEL 6
 
 /*********************************************************************
  * TYPEDEFS
@@ -96,8 +96,8 @@ static uint8_t hidEmuTaskId = INVALID_TASK_ID;
 
 // GAP Profile - Name attribute for SCAN RSP data
 static uint8_t scanRspData[] = {
-    0x0C,                           // length of this data
-    GAP_ADTYPE_LOCAL_NAME_COMPLETE, // AD Type = Complete local name
+    0x0C,                            // length of this data
+    GAP_ADTYPE_LOCAL_NAME_COMPLETE,  // AD Type = Complete local name
     'V',
     'e',
     'h',
@@ -111,71 +111,73 @@ static uint8_t scanRspData[] = {
     'y',
 
     // connection interval range
-    0x05, // length of this data
+    0x05,                                           // length of this data
     GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE,
-    LO_UINT16(DEFAULT_DESIRED_MIN_CONN_INTERVAL), // 100ms
-    HI_UINT16(DEFAULT_DESIRED_MIN_CONN_INTERVAL),
-    LO_UINT16(DEFAULT_DESIRED_MAX_CONN_INTERVAL), // 1s
-    HI_UINT16(DEFAULT_DESIRED_MAX_CONN_INTERVAL),
+    LO_UINT16 (DEFAULT_DESIRED_MIN_CONN_INTERVAL),  // 100ms
+    HI_UINT16 (DEFAULT_DESIRED_MIN_CONN_INTERVAL),
+    LO_UINT16 (DEFAULT_DESIRED_MAX_CONN_INTERVAL),  // 1s
+    HI_UINT16 (DEFAULT_DESIRED_MAX_CONN_INTERVAL),
 
     // service UUIDs
-    0x05, // length of this data
+    0x05,  // length of this data
     GAP_ADTYPE_16BIT_MORE,
-    LO_UINT16(HID_SERV_UUID),
-    HI_UINT16(HID_SERV_UUID),
-    LO_UINT16(BATT_SERV_UUID),
-    HI_UINT16(BATT_SERV_UUID),
+    LO_UINT16 (HID_SERV_UUID),
+    HI_UINT16 (HID_SERV_UUID),
+    LO_UINT16 (BATT_SERV_UUID),
+    HI_UINT16 (BATT_SERV_UUID),
 
     // Tx power level
-    0x02, // length of this data
+    0x02,  // length of this data
     GAP_ADTYPE_POWER_LEVEL,
-    0 // 0dBm
+    0      // 0dBm
 };
 
 // Advertising data
 static uint8_t advertData[] = {
     // flags
-    0x02, // length of this data
+    0x02,  // length of this data
     GAP_ADTYPE_FLAGS,
     GAP_ADTYPE_FLAGS_LIMITED | GAP_ADTYPE_FLAGS_BREDR_NOT_SUPPORTED,
 
     // appearance
-    0x03, // length of this data
+    0x03,  // length of this data
     GAP_ADTYPE_APPEARANCE,
-    LO_UINT16(GAP_APPEARE_GENERIC_HID),
-    HI_UINT16(GAP_APPEARE_GENERIC_HID)
-};
+    LO_UINT16 (GAP_APPEARE_GENERIC_HID),
+    HI_UINT16 (GAP_APPEARE_GENERIC_HID)};
 
 // Device name attribute value
 static CONST uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "vehicleKey";
 
 // HID Dev configuration
 static hidDevCfg_t hidEmuCfg = {
-    DEFAULT_HID_IDLE_TIMEOUT, // Idle timeout
-    HID_FEATURE_FLAGS         // HID feature flags
+    DEFAULT_HID_IDLE_TIMEOUT,  // Idle timeout
+    HID_FEATURE_FLAGS          // HID feature flags
 };
-typedef struct 
+
+typedef struct
 {
     uint8_t masterDevAddr[B_ADDR_LEN];
     uint8_t hasInit;
-}stuMasterMacAddrInfo;
+    uint8_t bleDistanceMode;
+} stuMasterMacAddrInfo;
+
 static uint16_t hidEmuConnHandle = GAP_CONNHANDLE_INIT;
 static stuMasterMacAddrInfo masterMacAddrInfo = {0};
-#define MASTER_MAC_ADDR_EEROM_ADDR   0
+#define MASTER_MAC_ADDR_EEROM_ADDR 0
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
 
-static void    hidEmu_ProcessTMOSMsg(tmos_event_hdr_t *pMsg);
-static void    hidEmuSendConsumerReport(uint8_t volume_up, uint8_t volume_dowm);
-static uint8_t hidEmuRptCB(uint8_t id, uint8_t type, uint16_t uuid,
-                           uint8_t oper, uint16_t *pLen, uint8_t *pData);
-static void    hidEmuEvtCB(uint8_t evt);
-static void    hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent);
-static void    flashWriteMac(uint8_t *macAddr);
-static void    flashReadMac(stuMasterMacAddrInfo *macAddrinfo);
-static BOOL    checkMasterMacAddr(stuMasterMacAddrInfo *macAddrinfo);
-static BOOL    CompMacAddr(uint8_t *macAddr);
+static void hidEmu_ProcessTMOSMsg (tmos_event_hdr_t *pMsg);
+static void hidEmuSendConsumerReport (uint8_t volume_up, uint8_t volume_dowm);
+static uint8_t hidEmuRptCB (uint8_t id, uint8_t type, uint16_t uuid,
+                            uint8_t oper, uint16_t *pLen, uint8_t *pData);
+static void hidEmuEvtCB (uint8_t evt);
+static void hidEmuStateCB (gapRole_States_t newState, gapRoleEvent_t *pEvent);
+static void flashWriteMac (uint8_t *macAddr);
+static void flashReadMac (stuMasterMacAddrInfo *macAddrinfo);
+static BOOL checkMasterMacAddr (stuMasterMacAddrInfo *macAddrinfo);
+static BOOL CompMacAddr (uint8_t *macAddr);
 /*********************************************************************
  * PROFILE CALLBACKS
  */
@@ -184,8 +186,7 @@ static hidDevCB_t hidEmuHidCBs = {
     hidEmuRptCB,
     hidEmuEvtCB,
     NULL,
-    hidEmuStateCB
-};
+    hidEmuStateCB};
 
 /*********************************************************************
  * PUBLIC FUNCTIONS
@@ -205,53 +206,52 @@ static hidDevCB_t hidEmuHidCBs = {
  *
  * @return  none
  */
-void HidEmu_Init()
-{
-    hidEmuTaskId = TMOS_ProcessEventRegister(HidEmu_ProcessEvent);
+void HidEmu_Init() {
+    hidEmuTaskId = TMOS_ProcessEventRegister (HidEmu_ProcessEvent);
 
     // Setup the GAP Peripheral Role Profile
     {
         uint8_t initial_advertising_enable = TRUE;
 
         // Set the GAP Role Parameters
-        GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &initial_advertising_enable);
+        GAPRole_SetParameter (GAPROLE_ADVERT_ENABLED, sizeof (uint8_t), &initial_advertising_enable);
 
-        GAPRole_SetParameter(GAPROLE_ADVERT_DATA, sizeof(advertData), advertData);
-        GAPRole_SetParameter(GAPROLE_SCAN_RSP_DATA, sizeof(scanRspData), scanRspData);
+        GAPRole_SetParameter (GAPROLE_ADVERT_DATA, sizeof (advertData), advertData);
+        GAPRole_SetParameter (GAPROLE_SCAN_RSP_DATA, sizeof (scanRspData), scanRspData);
     }
 
     // Set the GAP Characteristics
-    GGS_SetParameter(GGS_DEVICE_NAME_ATT, GAP_DEVICE_NAME_LEN, (void *)attDeviceName);
+    GGS_SetParameter (GGS_DEVICE_NAME_ATT, GAP_DEVICE_NAME_LEN, (void *)attDeviceName);
 
     // Setup the GAP Bond Manager
     {
         uint32_t passkey = DEFAULT_PASSCODE;
-        uint8_t  pairMode = DEFAULT_PAIRING_MODE;
-        uint8_t  mitm = DEFAULT_MITM_MODE;
-        uint8_t  ioCap = DEFAULT_IO_CAPABILITIES;
-        uint8_t  bonding = DEFAULT_BONDING_MODE;
-        GAPBondMgr_SetParameter(GAPBOND_PERI_DEFAULT_PASSCODE, sizeof(uint32_t), &passkey);
-        GAPBondMgr_SetParameter(GAPBOND_PERI_PAIRING_MODE, sizeof(uint8_t), &pairMode);
-        GAPBondMgr_SetParameter(GAPBOND_PERI_MITM_PROTECTION, sizeof(uint8_t), &mitm);
-        GAPBondMgr_SetParameter(GAPBOND_PERI_IO_CAPABILITIES, sizeof(uint8_t), &ioCap);
-        GAPBondMgr_SetParameter(GAPBOND_PERI_BONDING_ENABLED, sizeof(uint8_t), &bonding);
+        uint8_t pairMode = DEFAULT_PAIRING_MODE;
+        uint8_t mitm = DEFAULT_MITM_MODE;
+        uint8_t ioCap = DEFAULT_IO_CAPABILITIES;
+        uint8_t bonding = DEFAULT_BONDING_MODE;
+        GAPBondMgr_SetParameter (GAPBOND_PERI_DEFAULT_PASSCODE, sizeof (uint32_t), &passkey);
+        GAPBondMgr_SetParameter (GAPBOND_PERI_PAIRING_MODE, sizeof (uint8_t), &pairMode);
+        GAPBondMgr_SetParameter (GAPBOND_PERI_MITM_PROTECTION, sizeof (uint8_t), &mitm);
+        GAPBondMgr_SetParameter (GAPBOND_PERI_IO_CAPABILITIES, sizeof (uint8_t), &ioCap);
+        GAPBondMgr_SetParameter (GAPBOND_PERI_BONDING_ENABLED, sizeof (uint8_t), &bonding);
     }
 
     // Setup Battery Characteristic Values
     {
         uint8_t critical = DEFAULT_BATT_CRITICAL_LEVEL;
-        Batt_SetParameter(BATT_PARAM_CRITICAL_LEVEL, sizeof(uint8_t), &critical);
+        Batt_SetParameter (BATT_PARAM_CRITICAL_LEVEL, sizeof (uint8_t), &critical);
     }
 
     // Set up HID keyboard service
     Hid_AddService();
 
     // Register for HID Dev callback
-    HidDev_Register(&hidEmuCfg, &hidEmuHidCBs);
+    HidDev_Register (&hidEmuCfg, &hidEmuHidCBs);
 
     // Setup a delayed profile startup
-    tmos_set_event(hidEmuTaskId,START_RSSI_UPDATE_EVT);
-    tmos_set_event(hidEmuTaskId, VEHICLE_UPDATE_EVT);    
+    tmos_set_event (hidEmuTaskId, START_RSSI_UPDATE_EVT);
+    tmos_set_event (hidEmuTaskId, VEHICLE_UPDATE_EVT);
 }
 
 /*********************************************************************
@@ -267,67 +267,59 @@ void HidEmu_Init()
  *
  * @return  events not processed
  */
-uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events)
-{
-    if(events & SYS_EVENT_MSG)
-    {
+uint16_t HidEmu_ProcessEvent (uint8_t task_id, uint16_t events) {
+    if (events & SYS_EVENT_MSG) {
         uint8_t *pMsg;
 
-        if((pMsg = tmos_msg_receive(hidEmuTaskId)) != NULL)
-        {
-            hidEmu_ProcessTMOSMsg((tmos_event_hdr_t *)pMsg);
+        if ((pMsg = tmos_msg_receive (hidEmuTaskId)) != NULL) {
+            hidEmu_ProcessTMOSMsg ((tmos_event_hdr_t *)pMsg);
 
             // Release the TMOS message
-            tmos_msg_deallocate(pMsg);
+            tmos_msg_deallocate (pMsg);
         }
 
         // return unprocessed events
         return (events ^ SYS_EVENT_MSG);
     }
 
-    if(events & START_DEVICE_EVT)
-    {
+    if (events & START_DEVICE_EVT) {
         return (events ^ START_DEVICE_EVT);
     }
 
-    if(events & START_PARAM_UPDATE_EVT)
-    {
+    if (events & START_PARAM_UPDATE_EVT) {
         // Send connect param update request
-        GAPRole_PeripheralConnParamUpdateReq(hidEmuConnHandle,
-                                             DEFAULT_DESIRED_MIN_CONN_INTERVAL,
-                                             DEFAULT_DESIRED_MAX_CONN_INTERVAL,
-                                             DEFAULT_DESIRED_SLAVE_LATENCY,
-                                             DEFAULT_DESIRED_CONN_TIMEOUT,
-                                             hidEmuTaskId);
+        GAPRole_PeripheralConnParamUpdateReq (hidEmuConnHandle,
+                                              DEFAULT_DESIRED_MIN_CONN_INTERVAL,
+                                              DEFAULT_DESIRED_MAX_CONN_INTERVAL,
+                                              DEFAULT_DESIRED_SLAVE_LATENCY,
+                                              DEFAULT_DESIRED_CONN_TIMEOUT,
+                                              hidEmuTaskId);
 
         return (events ^ START_PARAM_UPDATE_EVT);
     }
 
-    if(events & START_REPORT_EVT)
-    {
-        //Send volume down and release
-        //Report for PC
-//        hidEmuSendConsumerReport(0xea, 0);
-//        hidEmuSendConsumerReport(0, 0);
+    if (events & START_REPORT_EVT) {
+        // Send volume down and release
+        // Report for PC
+        //  hidEmuSendConsumerReport(0xea, 0);
+        //  hidEmuSendConsumerReport(0, 0);
 
-        //Report for Android
-        // hidEmuSendConsumerReport(0, 1);
-        // hidEmuSendConsumerReport(0, 0);
+        // Report for Android
+        //  hidEmuSendConsumerReport(0, 1);
+        //  hidEmuSendConsumerReport(0, 0);
 
         // tmos_start_task(hidEmuTaskId, START_REPORT_EVT, 1600);
         return (events ^ START_REPORT_EVT);
     }
-    if(events & START_RSSI_UPDATE_EVT)
-    {
-        GAPRole_ReadRssiCmd(hidEmuConnHandle);
-        tmos_start_task(hidEmuTaskId, START_RSSI_UPDATE_EVT, START_RSSI_UPDATE_EVT_DELAY);
+    if (events & START_RSSI_UPDATE_EVT) {
+        GAPRole_ReadRssiCmd (hidEmuConnHandle);
+        tmos_start_task (hidEmuTaskId, START_RSSI_UPDATE_EVT, START_RSSI_UPDATE_EVT_DELAY);
         return (events ^ START_RSSI_UPDATE_EVT);
     }
-    
-    if(events & VEHICLE_UPDATE_EVT)
-    {
+
+    if (events & VEHICLE_UPDATE_EVT) {
         loopVehicleControl();
-        tmos_start_task(hidEmuTaskId, VEHICLE_UPDATE_EVT, MS1_TO_SYSTEM_TIME(100));    
+        tmos_start_task (hidEmuTaskId, VEHICLE_UPDATE_EVT, MS1_TO_SYSTEM_TIME (100));
         return (events ^ VEHICLE_UPDATE_EVT);
     }
     return 0;
@@ -342,12 +334,10 @@ uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events)
  *
  * @return  none
  */
-static void hidEmu_ProcessTMOSMsg(tmos_event_hdr_t *pMsg)
-{
-    switch(pMsg->event)
-    {
-        default:
-            break;
+static void hidEmu_ProcessTMOSMsg (tmos_event_hdr_t *pMsg) {
+    switch (pMsg->event) {
+    default:
+        break;
     }
 }
 
@@ -361,15 +351,14 @@ static void hidEmu_ProcessTMOSMsg(tmos_event_hdr_t *pMsg)
  *
  * @return  none
  */
-static void hidEmuSendConsumerReport(uint8_t volume_up, uint8_t volume_dowm)
-{
+static void hidEmuSendConsumerReport (uint8_t volume_up, uint8_t volume_dowm) {
     uint8_t buf[HID_CONSUMER_IN_RPT_LEN];
 
-    buf[0] = volume_up;   // volume up
-    buf[1] = volume_dowm; // volume dowm
+    buf[0] = volume_up;    // volume up
+    buf[1] = volume_dowm;  // volume dowm
 
-    HidDev_Report(HID_RPT_ID_CONSUMER_IN, HID_REPORT_TYPE_INPUT,
-                  HID_CONSUMER_IN_RPT_LEN, buf);
+    HidDev_Report (HID_RPT_ID_CONSUMER_IN, HID_REPORT_TYPE_INPUT,
+                   HID_CONSUMER_IN_RPT_LEN, buf);
 }
 
 /*********************************************************************
@@ -381,106 +370,98 @@ static void hidEmuSendConsumerReport(uint8_t volume_up, uint8_t volume_dowm)
  *
  * @return  none
  */
-static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
-{
-    switch(newState)
-    {
-        case GAPROLE_STARTED:
+static void hidEmuStateCB (gapRole_States_t newState, gapRoleEvent_t *pEvent) {
+    switch (newState) {
+    case GAPROLE_STARTED: {
+        uint8_t ownAddr[6];
+        GAPRole_GetParameter (GAPROLE_BD_ADDR, ownAddr);
+        GAP_ConfigDeviceAddr (ADDRTYPE_STATIC, ownAddr);
+        flashReadMac (&masterMacAddrInfo);
+        if (checkMasterMacAddr (&masterMacAddrInfo) == FALSE) {
+            uint8_t pairMode = GAPBOND_PAIRING_MODE_WAIT_FOR_REQ;
+            GAPBondMgr_SetParameter (GAPBOND_PERI_PAIRING_MODE, sizeof (uint8_t), &pairMode);
+            setBleConenctStatus (3);
+        }
+        PRINT ("Initialized..\n");
+    } break;
+
+    case GAPROLE_ADVERTISING:
+        PRINT ("Advertising..\n");
+        setBleConenctStatus (0);
+        break;
+
+    case GAPROLE_CONNECTED: {
+        // gapDeviceInfoEvent_t *ddevent = (gapDeviceInfoEvent_t *)pEvent;
+
+        gapEstLinkReqEvent_t *event = (gapEstLinkReqEvent_t *)pEvent;
+
+        // PRINT ( "directAddressType=%x devAddr",event->devAddrType );  //ï¿½ï¿½È¡ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
+        // for(int i=0; i<6; i++)
+        // {
+        //     PRINT ( " %x ",pEvent->linkCmpl.devAddr[i]);//ï¿½ï¿½Ó¡ï¿½ï¿½Ö·
+        // }
+        // PRINT ( "\n addr ");
+        // for(int i=0; i<6; i++)
+        // {
+        //     PRINT ( " %x ",pEvent->deviceInfo.addr[i]);//ï¿½ï¿½Ó¡ï¿½ï¿½Ö·
+        // }
+        // PRINT ( "\n addr ");
+        // for(int i=0; i<6; i++)
+        // {
+        //     PRINT ( " %x ",pEvent->initDone.devAddr[i]);//ï¿½ï¿½Ó¡ï¿½ï¿½Ö·
+        // }
+        // uint8_t Buffer[6];
+        // GET_UNIQUE_ID(Buffer);
+        //             PRINT ( "\n addr ");
+        // for(int i=0; i<6; i++)
+        // {
+        //     PRINT ( " %x ",Buffer[i]);//ï¿½ï¿½Ó¡ï¿½ï¿½Ö·
+        // }
+        if (checkMasterMacAddr (&masterMacAddrInfo) == FALSE) {
+            flashWriteMac (event->devAddr);
+        }
+        // if(CompMacAddr(event->devAddr) == FALSE)
         {
-            uint8_t ownAddr[6];
-            GAPRole_GetParameter(GAPROLE_BD_ADDR, ownAddr);
-            GAP_ConfigDeviceAddr(ADDRTYPE_STATIC, ownAddr);
-            flashReadMac(&masterMacAddrInfo);
-            if(checkMasterMacAddr(&masterMacAddrInfo) == FALSE)
-            {
-                uint8_t  pairMode = GAPBOND_PAIRING_MODE_WAIT_FOR_REQ;
-                GAPBondMgr_SetParameter(GAPBOND_PERI_PAIRING_MODE, sizeof(uint8_t), &pairMode);
-            }
-            PRINT("Initialized..\n");
+            // get connection handle
+            hidEmuConnHandle = event->connectionHandle;
+            tmos_start_task (hidEmuTaskId, START_PARAM_UPDATE_EVT, START_PARAM_UPDATE_EVT_DELAY);
+            PRINT ("\n Connected..\n");
+            setBleConenctStatus (1);
+        }
+        // else
+        // {
+        //     setBleConenctStatus(4);
+        // }
+
+    } break;
+
+    case GAPROLE_CONNECTED_ADV:
+        PRINT ("Connected Advertising..\n");
+        break;
+
+    case GAPROLE_WAITING:
+        if (pEvent->gap.opcode == GAP_END_DISCOVERABLE_DONE_EVENT) {
+            PRINT ("Waiting for advertising..\n");
+        } else if (pEvent->gap.opcode == GAP_LINK_TERMINATED_EVENT) {
+            PRINT ("Disconnected.. Reason:%x\n", pEvent->linkTerminate.reason);
+            setBleConenctStatus (2);
+        } else if (pEvent->gap.opcode == GAP_LINK_ESTABLISHED_EVENT) {
+            PRINT ("Advertising timeout..\n");
+        }
+        // Enable advertising
+        {
+            uint8_t initial_advertising_enable = TRUE;
+            // Set the GAP Role Parameters
+            GAPRole_SetParameter (GAPROLE_ADVERT_ENABLED, sizeof (uint8_t), &initial_advertising_enable);
         }
         break;
 
-        case GAPROLE_ADVERTISING:
-            PRINT("Advertising..\n");
-            setBleConenctStatus(0);
-            break;
-
-        case GAPROLE_CONNECTED:
-        {
-            // gapDeviceInfoEvent_t *ddevent = (gapDeviceInfoEvent_t *)pEvent;
-
-            gapEstLinkReqEvent_t *event = (gapEstLinkReqEvent_t *)pEvent;
-
-            // PRINT ( "directAddressType=%x devAddr",event->devAddrType );  //»ñÈ¡µØÖ·ÀàÐÍ
-            // for(int i=0; i<6; i++)
-            // {
-            //     PRINT ( " %x ",pEvent->linkCmpl.devAddr[i]);//´òÓ¡µØÖ·
-            // }
-            // PRINT ( "\n addr ");
-            // for(int i=0; i<6; i++)
-            // {
-            //     PRINT ( " %x ",pEvent->deviceInfo.addr[i]);//´òÓ¡µØÖ·
-            // }
-            // PRINT ( "\n addr ");
-            // for(int i=0; i<6; i++)
-            // {
-            //     PRINT ( " %x ",pEvent->initDone.devAddr[i]);//´òÓ¡µØÖ·
-            // }
-            // uint8_t Buffer[6];
-            // GET_UNIQUE_ID(Buffer);
-            //             PRINT ( "\n addr ");
-            // for(int i=0; i<6; i++)
-            // {
-            //     PRINT ( " %x ",Buffer[i]);//´òÓ¡µØÖ·
-            // }
-            if(checkMasterMacAddr(&masterMacAddrInfo) == FALSE)
-            {
-                flashWriteMac(event->devAddr);
-            }
-            // if(CompMacAddr(event->devAddr) == FALSE)
-            {
-                // get connection handle
-                hidEmuConnHandle = event->connectionHandle;
-                tmos_start_task(hidEmuTaskId, START_PARAM_UPDATE_EVT, START_PARAM_UPDATE_EVT_DELAY);
-                PRINT("\n Connected..\n");
-                setBleConenctStatus(1);
-            }
-  
-        }
+    case GAPROLE_ERROR:
+        PRINT ("Error..\n");
         break;
 
-        case GAPROLE_CONNECTED_ADV:
-            PRINT("Connected Advertising..\n");
-            break;
-
-        case GAPROLE_WAITING:
-            if(pEvent->gap.opcode == GAP_END_DISCOVERABLE_DONE_EVENT)
-            {
-                PRINT("Waiting for advertising..\n");
-            }
-            else if(pEvent->gap.opcode == GAP_LINK_TERMINATED_EVENT)
-            {
-                PRINT("Disconnected.. Reason:%x\n", pEvent->linkTerminate.reason);
-                setBleConenctStatus(2);
-            }
-            else if(pEvent->gap.opcode == GAP_LINK_ESTABLISHED_EVENT)
-            {
-                PRINT("Advertising timeout..\n");
-            }
-            // Enable advertising
-            {
-                uint8_t initial_advertising_enable = TRUE;
-                // Set the GAP Role Parameters
-                GAPRole_SetParameter(GAPROLE_ADVERT_ENABLED, sizeof(uint8_t), &initial_advertising_enable);
-            }
-            break;
-
-        case GAPROLE_ERROR:
-            PRINT("Error..\n");
-            break;
-
-        default:
-            break;
+    default:
+        break;
     }
 }
 
@@ -498,25 +479,21 @@ static void hidEmuStateCB(gapRole_States_t newState, gapRoleEvent_t *pEvent)
  *
  * @return  GATT status code.
  */
-static uint8_t hidEmuRptCB(uint8_t id, uint8_t type, uint16_t uuid,
-                           uint8_t oper, uint16_t *pLen, uint8_t *pData)
-{
+static uint8_t hidEmuRptCB (uint8_t id, uint8_t type, uint16_t uuid,
+                            uint8_t oper, uint16_t *pLen, uint8_t *pData) {
     uint8_t status = SUCCESS;
 
     // write
-    if(oper == HID_DEV_OPER_WRITE)
-    {
-        status = Hid_SetParameter(id, type, uuid, *pLen, pData);
+    if (oper == HID_DEV_OPER_WRITE) {
+        status = Hid_SetParameter (id, type, uuid, *pLen, pData);
     }
     // read
-    else if(oper == HID_DEV_OPER_READ)
-    {
-        status = Hid_GetParameter(id, type, uuid, pLen, pData);
+    else if (oper == HID_DEV_OPER_READ) {
+        status = Hid_GetParameter (id, type, uuid, pLen, pData);
     }
     // notifications enabled
-    else if(oper == HID_DEV_OPER_ENABLE)
-    {
-        tmos_start_task(hidEmuTaskId, START_REPORT_EVT, 500);
+    else if (oper == HID_DEV_OPER_ENABLE) {
+        tmos_start_task (hidEmuTaskId, START_REPORT_EVT, 500);
     }
     return status;
 }
@@ -530,69 +507,79 @@ static uint8_t hidEmuRptCB(uint8_t id, uint8_t type, uint16_t uuid,
  *
  * @return  HID response code.
  */
-static void hidEmuEvtCB(uint8_t evt)
-{
+static void hidEmuEvtCB (uint8_t evt) {
     // process enter/exit suspend or enter/exit boot mode
     return;
 }
 
 /*********************************************************************
 *********************************************************************/
-static void flashWriteMac(uint8_t *macAddr)
-{
-    uint8_t  s;
-    if(macAddr == CAP_NULL)
-    {
-        PRINT("macAddr is null\n");
+static void flashWriteMac (uint8_t *macAddr) {
+    uint8_t s;
+    if (macAddr == CAP_NULL) {
+        PRINT ("macAddr is null\n");
         return;
     }
     masterMacAddrInfo.hasInit = 0xaa;
-    s = EEPROM_ERASE(MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
-    PRINT("EEPROM_ERASE=%02x\n", s);
-    tmos_memcpy(masterMacAddrInfo.masterDevAddr,macAddr,B_ADDR_LEN);
-    s = EEPROM_WRITE(MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof(stuMasterMacAddrInfo));
-    PRINT("EEPROM_WRITE=%02x\n", s);
-    
+    s = EEPROM_ERASE (MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
+    PRINT ("EEPROM_ERASE=%02x\n", s);
+    tmos_memcpy (masterMacAddrInfo.masterDevAddr, macAddr, B_ADDR_LEN);
+    s = EEPROM_WRITE (MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof (stuMasterMacAddrInfo));
+    PRINT ("EEPROM_WRITE=%02x\n", s);
 }
-void flashResetMasterMac()
-{
-    uint8_t  s;
-    s = EEPROM_ERASE(MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
+
+void flashResetMasterMac() {
+    uint8_t s;
+    s = EEPROM_ERASE (MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
     masterMacAddrInfo.hasInit = 0x00;
-    PRINT("EEPROM_ERASE=%02x\n", s);
+    PRINT ("EEPROM_ERASE=%02x\n", s);
 }
-static void flashReadMac(stuMasterMacAddrInfo *macAddrinfo)
-{
-    if(macAddrinfo == CAP_NULL)
-    {
-        PRINT("macAddrinfo is null\n");
+
+void saveModeFlash (int mode) {
+    uint8_t s;
+    EEPROM_READ (MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof (stuMasterMacAddrInfo));
+    masterMacAddrInfo.bleDistanceMode = mode;
+    s = EEPROM_ERASE (MASTER_MAC_ADDR_EEROM_ADDR, EEPROM_BLOCK_SIZE);
+    PRINT ("EEPROM_ERASE=%02x\n", s);
+    tmos_memcpy (masterMacAddrInfo.masterDevAddr, MacAddr, B_ADDR_LEN);
+    s = EEPROM_WRITE (MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof (stuMasterMacAddrInfo));
+}
+
+int getDistacnceMode() {
+    if (masterMacAddrInfo.hasInit == 0xaa)
+        return masterMacAddrInfo.bleDistanceMode;
+    else {
+        EEPROM_READ (MASTER_MAC_ADDR_EEROM_ADDR, (void *)&masterMacAddrInfo, sizeof (stuMasterMacAddrInfo));
+        return masterMacAddrInfo.bleDistanceMode;
+    }
+}
+
+static void flashReadMac (stuMasterMacAddrInfo *macAddrinfo) {
+    if (macAddrinfo == CAP_NULL) {
+        PRINT ("macAddrinfo is null\n");
         return;
     }
-    PRINT("read master mac:");
-    EEPROM_READ(MASTER_MAC_ADDR_EEROM_ADDR, (void*)macAddrinfo, sizeof(stuMasterMacAddrInfo));
-    for(int i = 0; i < B_ADDR_LEN ; i ++)
-    {
-        PRINT("%x ",macAddrinfo->masterDevAddr[i]);
+    PRINT ("read master mac:");
+    EEPROM_READ (MASTER_MAC_ADDR_EEROM_ADDR, (void *)macAddrinfo, sizeof (stuMasterMacAddrInfo));
+    for (int i = 0; i < B_ADDR_LEN; i++) {
+        PRINT ("%x ", macAddrinfo->masterDevAddr[i]);
     }
-    PRINT(" init flag:%x\n",macAddrinfo->hasInit);
+    PRINT (" init flag:%x\n", macAddrinfo->hasInit);
 }
-static BOOL checkMasterMacAddr(stuMasterMacAddrInfo *macAddrinfo)
-{
-    if(macAddrinfo->hasInit == 0xaa)
-       {
-        PRINT(" init true\n");
+
+static BOOL checkMasterMacAddr (stuMasterMacAddrInfo *macAddrinfo) {
+    if (macAddrinfo->hasInit == 0xaa) {
+        PRINT (" init true\n");
         return TRUE;
-       }
-       PRINT(" init false\n");
+    }
+    PRINT (" init false\n");
     return FALSE;
-        
 }
-static BOOL CompMacAddr(uint8_t *macAddr)
-{
-    if(macAddr == CAP_NULL)
-    {
-        PRINT("macAddr is null\n");
+
+static BOOL CompMacAddr (uint8_t *macAddr) {
+    if (macAddr == CAP_NULL) {
+        PRINT ("macAddr is null\n");
         return FALSE;
     }
-    return tmos_memcmp(macAddr,masterMacAddrInfo.masterDevAddr,B_ADDR_LEN);
+    return tmos_memcmp (macAddr, masterMacAddrInfo.masterDevAddr, B_ADDR_LEN);
 }

@@ -46,7 +46,7 @@ extern "C" {
  * TYPEDEFS
  */
 
-/* Á¬½ÓÒ»¸öLEDÓÃÓÚ¼à¿ØÑÝÊ¾³ÌÐòµÄ½ø¶È,µÍµçÆ½LEDÁÁ */
+/* ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½LEDï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½,ï¿½Íµï¿½Æ½LEDï¿½ï¿½ */
 
 /* 1 - LED */
 #define LED1_BV                 BV(12)
@@ -59,20 +59,20 @@ extern "C" {
 #define LED3_OUT                (R32_PB_OUT)
 #define LED4_OUT                (R32_PB_OUT)
 
-#define LED1_DDR                (R32_PA_DIR |= LED1_BV)
-#define LED2_DDR                (R32_PA_DIR |= LED2_BV)
-#define LED3_DDR                (R32_PB_DIR |= LED3_BV)
-#define LED4_DDR                (R32_PB_DIR |= LED4_BV)
+#define LED1_DDR                GPIOA_ModeCfg(LED1_BV, GPIO_ModeOut_PP_5mA)
+#define LED2_DDR                GPIOA_ModeCfg(LED2_BV, GPIO_ModeOut_PP_5mA)
+#define LED3_DDR                GPIOB_ModeCfg(LED3_BV, GPIO_ModeOut_PP_5mA)
+#define LED4_DDR                GPIOB_ModeCfg(LED4_BV, GPIO_ModeOut_PP_5mA)
 
-#define HAL_TURN_OFF_LED1()     (LED1_OUT &= LED1_BV)
-#define HAL_TURN_OFF_LED2()     (LED2_OUT &= LED2_BV)
-#define HAL_TURN_OFF_LED3()     (LED3_OUT |= LED3_BV)
-#define HAL_TURN_OFF_LED4()     (LED4_OUT |= LED4_BV)
+#define HAL_TURN_OFF_LED1()     GPIOA_SetBits(LED1_BV)
+#define HAL_TURN_OFF_LED2()     GPIOA_SetBits(LED2_BV)
+#define HAL_TURN_OFF_LED3()     GPIOB_SetBits(LED3_BV)
+#define HAL_TURN_OFF_LED4()     GPIOB_SetBits(LED4_BV)
 
-#define HAL_TURN_ON_LED1()      (LED1_OUT |= (~LED1_BV))
-#define HAL_TURN_ON_LED2()      (LED2_OUT |= (~LED2_BV))
-#define HAL_TURN_ON_LED3()      (LED3_OUT &= (~LED3_BV))
-#define HAL_TURN_ON_LED4()      (LED4_OUT &= (~LED4_BV))
+#define HAL_TURN_ON_LED1()      GPIOA_ResetBits(LED1_BV)
+#define HAL_TURN_ON_LED2()      GPIOA_ResetBits(LED2_BV)
+#define HAL_TURN_ON_LED3()      GPIOB_ResetBits(LED3_BV)
+#define HAL_TURN_ON_LED4()      GPIOB_ResetBits(LED4_BV)
 
 #define HAL_STATE_LED1()        0
 #define HAL_STATE_LED2()        0

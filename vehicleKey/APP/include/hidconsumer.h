@@ -44,7 +44,28 @@ extern "C" {
 /*********************************************************************
  * GLOBAL VARIABLES
  */
+typedef enum
+{
+    STATUS_CONNECTED = 0x01,
+    STATUS_DISCONNECT = 0x02,
+    STATUS_UNLOCK = 0x03,
+    STATUS_USER_OPEN = 0x04,
+    STATUS_USER_KEEP = 0x05,    
 
+    STATUS_PAIRING = 0x10,    
+    STATUS_USER_CLOSE = 0x20,
+    STATUS_NO_PAIR = 0x30,
+    STATUS_ERROR = 0x40,
+
+    STATUS_SLEEP = 0x80,
+}enum_led_status;
+
+enum
+{
+    KEEP_UNLOCK,
+    VEHICLE_KEY_POWER,
+    UNLOCK,    
+};
 /*
  * Task Initialization for the BLE Application
  */
@@ -54,24 +75,19 @@ extern void flashResetMasterMac(void);
 extern void loopVehicleControl(void);
 extern void bleDistanceModeControl(void);
 extern void setThreeLed (int color);
-extern void setVehicleLedStatusWork(int status);
+extern void setVehicleLedStatusWork(enum_led_status status);
 extern void initVehicleControl();
 extern void setBleConenctStatus(int status);
+extern void setBleKeyStatus(int status,BOOL sw);
+extern void hidRssiCB( uint16_t connHandle, int8_t newRSSI );
+extern void saveModeFlash(int mode);
+extern int getDistacnceMode(void);
 /*
  * Task Event Processor for the BLE Application
  */
 extern uint16_t HidEmu_ProcessEvent(uint8_t task_id, uint16_t events);
 
-enum
-{
-    STATUS_CONNECTED = 0x01,
-    STATUS_IDLE = 0x02,
-    STATUS_UNLOCK = 0x04,
 
-    STATUS_PAIR = 0x10,
-    STATUS_LOW_POWER = 0x20,
-    STATUS_ERROR = 0x40,
-};
 /*********************************************************************
 *********************************************************************/
 

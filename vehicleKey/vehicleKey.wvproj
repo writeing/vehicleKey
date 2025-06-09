@@ -25,9 +25,9 @@
 				"name": "demo_rtt_iotboard.c"
 			},
 			{
-				"name": "demo_tos_evb_mx_plus.c",
 				"parentLogicPath": "thrLib/FlexibleButton-latest/examples",
-				"type": "file"
+				"type": "file",
+				"name": "demo_tos_evb_mx_plus.c"
 			}
 		],
 		"projectName": "vehicleKey",
@@ -52,7 +52,6 @@
 				"excludeResources": [
 					"${project}/StdPeriphDriver/CH57x_timer3.c",
 					"${project}/StdPeriphDriver/CH57x_timer2.c",
-					"${project}/StdPeriphDriver/CH57x_timer1.c",
 					"${project}/StdPeriphDriver/CH57x_timer0.c",
 					"${project}/StdPeriphDriver/CH57x_usbhostClass.c",
 					"${project}/StdPeriphDriver/CH57x_usbhostBase.c",

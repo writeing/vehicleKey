@@ -3,7 +3,7 @@
  * Author             : WCH
  * Version            : V1.2
  * Date               : 2022/01/18
- * Description        : Ë¯ÃßÅäÖÃ¼°Æä³õÊ¼»¯
+ * Description        : Ë¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿?1?7
  *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
  * Attention: This software (modified or not) and binary are used for 
@@ -11,15 +11,15 @@
  *******************************************************************************/
 
 /******************************************************************************/
-/* Í·ÎÄ¼þ°üº¬ */
+/* Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ */
 #include "HAL.h"
 
 /*******************************************************************************
  * @fn      CH57X_LowPower
  *
- * @brief   Æô¶¯Ë¯Ãß
+ * @brief   ï¿½ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½
  *
- * @param   time    - »½ÐÑµÄÊ±¼äµã£¨RTC¾ø¶ÔÖµ£©
+ * @param   time    - ï¿½ï¿½ï¿½Ñµï¿½Ê±ï¿½ï¿½ã£¨RTCï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½
  *
  * @return  state.
  */
@@ -31,14 +31,14 @@ uint32_t CH57X_LowPower(uint32_t time)
     
     SYS_DisableAllIrq(&irq_status);
     time_curr = RTC_GetCycle32k();
-    // ¼ì²âË¯ÃßÊ±¼ä
+    // ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½Ê±ï¿½ï¿?1?7
     if (time < time_curr) {
         time_sleep = time + (RTC_TIMER_MAX_VALUE - time_curr);
     } else {
         time_sleep = time - time_curr;
     }
 
-    // ÈôË¯ÃßÊ±¼äÐ¡ÓÚ×îÐ¡Ë¯ÃßÊ±¼ä»ò´óÓÚ×î´óË¯ÃßÊ±¼ä£¬Ôò²»Ë¯Ãß
+    // ï¿½ï¿½Ë¯ï¿½ï¿½Ê±ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ð¡Ë¯ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½Ë¯ï¿½ï¿?1?7
     if ((time_sleep < SLEEP_RTC_MIN_TIME) || 
         (time_sleep > SLEEP_RTC_MAX_TIME)) {
         SYS_RecoverIrq(irq_status);
@@ -47,7 +47,7 @@ uint32_t CH57X_LowPower(uint32_t time)
 
     RTC_SetTignTime(time);
     SYS_RecoverIrq(irq_status);
-#if(DEBUG == Debug_UART1) // Ê¹ÓÃÆäËû´®¿ÚÊä³ö´òÓ¡ÐÅÏ¢ÐèÒªÐÞ¸ÄÕâÐÐ´úÂë
+#if(DEBUG == Debug_UART1) // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢ï¿½ï¿½Òªï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿?1?7
     while((R8_UART1_LSR & RB_LSR_TX_ALL_EMP) == 0)
     {
         __nop();
@@ -56,11 +56,13 @@ uint32_t CH57X_LowPower(uint32_t time)
     // LOW POWER-sleepÄ£Ê½
     if(!RTCTigFlag)
     {
-        LowPower_Sleep(RB_PWR_RAM2K | RB_PWR_RAM16K | RB_PWR_EXTEND);
+        LowPower_Sleep(RB_PWR_RAM2K | RB_PWR_RAM16K | RB_PWR_EXTEND );
+        // LowPower_Shutdown(RB_PWR_RAM2K | RB_PWR_RAM16K);
+        // LowPower_Halt();
 #if(defined(DCDC_ENABLE)) && (DCDC_ENABLE == TRUE)
         PWR_DCDCCfg(ENABLE);
 #endif
-        if(RTCTigFlag) // ×¢ÒâÈç¹ûÊ¹ÓÃÁËRTCÒÔÍâµÄ»½ÐÑ·½Ê½£¬ÐèÒª×¢Òâ´ËÊ±32M¾§ÕñÎ´ÎÈ¶¨
+        if(RTCTigFlag) // ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½RTCï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Ñ·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Òª×¢ï¿½ï¿½ï¿½Ê±32Mï¿½ï¿½ï¿½ï¿½Î´ï¿½È¶ï¿½
         {
             time += WAKE_UP_RTC_MAX_TIME;
             if(time > 0xA8C00000)
@@ -70,7 +72,7 @@ uint32_t CH57X_LowPower(uint32_t time)
             RTC_SetTignTime(time);
             LowPower_Idle();
         }
-        HSECFG_Current(HSE_RCur_100); // ½µÎª¶î¶¨µçÁ÷(µÍ¹¦ºÄº¯ÊýÖÐÌáÉýÁËHSEÆ«ÖÃµçÁ÷)
+        HSECFG_Current(HSE_RCur_100); // ï¿½ï¿½Îªï¿½î¶¨ï¿½ï¿½ï¿½ï¿½(ï¿½Í¹ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HSEÆ«ï¿½Ãµï¿½ï¿½ï¿½)
     }
     else
     {
@@ -83,7 +85,7 @@ uint32_t CH57X_LowPower(uint32_t time)
 /*******************************************************************************
  * @fn      HAL_SleepInit
  *
- * @brief   ÅäÖÃË¯Ãß»½ÐÑµÄ·½Ê½   - RTC»½ÐÑ£¬´¥·¢Ä£Ê½
+ * @brief   ï¿½ï¿½ï¿½ï¿½Ë¯ï¿½ß»ï¿½ï¿½ÑµÄ·ï¿½Ê½   - RTCï¿½ï¿½ï¿½Ñ£ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
  *
  * @param   None.
  *
@@ -93,9 +95,9 @@ void HAL_SleepInit(void)
 {
 #if(defined(HAL_SLEEP)) && (HAL_SLEEP == TRUE)
     sys_safe_access_enable();
-    R8_SLP_WAKE_CTRL |= RB_SLP_RTC_WAKE; // RTC»½ÐÑ
+    R8_SLP_WAKE_CTRL |= RB_SLP_RTC_WAKE; // RTCï¿½ï¿½ï¿½ï¿½
     sys_safe_access_enable();
-    R8_RTC_MODE_CTRL |= RB_RTC_TRIG_EN;  // ´¥·¢Ä£Ê½
+    R8_RTC_MODE_CTRL |= RB_RTC_TRIG_EN;  // ï¿½ï¿½ï¿½ï¿½Ä£Ê½
     sys_safe_access_disable();            //
     PFIC_EnableIRQ(RTC_IRQn);
 #endif
